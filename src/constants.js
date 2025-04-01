@@ -1,1 +1,1 @@
-export const appName = "Geddit!";
+export const appName = "Gribbit!";

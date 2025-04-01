@@ -17,3 +17,19 @@ export function fetchAllArticles() {
       });
   });
 }
+
+export function updateVotes(article_id, increment) {
+  console.log("Increment value:", increment);
+  return new Promise((resolve, reject) => {
+    api
+      .patch(`/articles/${article_id}`, { inc_votes: increment })
+      .then((response) => {
+        console.log("Vote updated successfully:", response);
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating vote:", error);
+        reject(error);
+      });
+  });
+}

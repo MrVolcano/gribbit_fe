@@ -8,11 +8,10 @@ export default function Header() {
     <div>
       <Navbar className="bg-body-tertiary" fixed="top">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
-              //   src="/public/vite.svg"
-              src="/public/frog-svgrepo-com.svg"
+              src="/src/assets/frog2.svg"
               width="30"
               height="30"
               className="d-inline-block align-top"
