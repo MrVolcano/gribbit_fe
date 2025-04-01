@@ -1,6 +1,9 @@
 import Card from "react-bootstrap/Card";
 import Votes from "./Votes";
 import CommentsCount from "./CommentsCount";
+import { RxAvatar } from "react-icons/rx";
+import Badge from "react-bootstrap/Badge";
+import AuthorAvatar from "./AuthorAvatar";
 
 export default function ArticleCard({ article }) {
   return (
@@ -11,8 +14,10 @@ export default function ArticleCard({ article }) {
         alt="Article image"
       />
       <Card.Body>
-        <Card.Title>{article.title}</Card.Title>
-        {/* <Card.Text>Body text here?</Card.Text> */}
+        <div className="title-author-container">
+          <Card.Title>{article.title}</Card.Title>
+        </div>
+        <AuthorAvatar author={article.author}></AuthorAvatar>
         <div className="vote-comment-container">
           <Votes article={article} />
           <CommentsCount comment_count={article.comment_count} />
