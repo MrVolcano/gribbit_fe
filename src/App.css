@@ -35,8 +35,27 @@
 
 .card {
   padding: 2em;
+  margin-top: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+.vote-comment-container {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+  margin-top: 10px; /* Adds some space above the container */
+}
+
+.vote-comment-container span {
+  display: flex;
+  align-items: center; /* Vertically centers items */
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding-top: 1em;
+  /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
+  color: var(--bs-card-color);
 }
