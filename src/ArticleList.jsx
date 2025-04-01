@@ -16,7 +16,6 @@ export default function ArticleList() {
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);
-        // setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);

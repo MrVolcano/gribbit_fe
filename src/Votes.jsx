@@ -25,7 +25,6 @@ export default function Votes({ article }) {
   return (
     <span>
       Votes: {votesCount}
-      {/* Votes: {article.votes} */}
       <span onClick={() => handleVote(+1)} style={{ cursor: "pointer" }}>
         <FaArrowAltCircleUp style={{ marginLeft: "10px", color: "gold" }} />
       </span>
