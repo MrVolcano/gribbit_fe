@@ -16,11 +16,13 @@ export default function ArticleList() {
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);
-        setIsLoading(false);
+        // setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching articles:", error);
         setError(true);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }, []);

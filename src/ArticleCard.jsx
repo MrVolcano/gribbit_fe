@@ -1,12 +1,12 @@
 import Card from "react-bootstrap/Card";
-import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
-import { updateVotes } from "./apiFunctions";
+import Votes from "./Votes";
+import CommentsCount from "./CommentsCount";
 
 export default function ArticleCard({ article }) {
-  const handleVote = (increment) => {
-    console.log(`Voted ${increment} for article ID: ${article.article_id}`);
-    updateVotes(article.article_id, increment);
-  };
+  // const handleVote = (increment) => {
+  //   console.log(`Voted ${increment} for article ID: ${article.article_id}`);
+  //   updateVotes(article.article_id, increment);
+  // };
 
   return (
     <Card className="bg-dark text-white">
@@ -17,23 +17,10 @@ export default function ArticleCard({ article }) {
       />
       <Card.Body>
         <Card.Title>{article.title}</Card.Title>
-        <Card.Text>Body text here?</Card.Text>
+        {/* <Card.Text>Body text here?</Card.Text> */}
         <div className="vote-comment-container">
-          <span>
-            Votes: {article.votes}
-            <span onClick={() => handleVote(+1)} style={{ cursor: "pointer" }}>
-              <FaArrowAltCircleUp
-                style={{ marginLeft: "10px", color: "gold" }}
-              />
-            </span>
-            <span
-              onClick={() => handleVote(-1)}
-              style={{ marginLeft: "5px", cursor: "pointer" }}
-            >
-              <FaArrowAltCircleDown style={{ color: "red" }} />
-            </span>
-          </span>
-          <span>Comments: {article.comment_count}</span>
+          <Votes article={article}/>
+          <CommentsCount comment_count={article.comment_count}/>
         </div>
       </Card.Body>
     </Card>
