@@ -33,9 +33,28 @@
   }
 }
 
-.card {
+/* .card {
   padding: 2em;
   margin-top: 2em;
+} */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px 8px;
+  cursor: pointer; /* Indicates clickability for upvote */
+}
+
+.controls {
+  display: flex;
+  align-items: center;
 }
 
 .read-the-docs {

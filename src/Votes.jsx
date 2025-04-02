@@ -8,8 +8,9 @@ export default function Votes({ article }) {
     setVotesCount(article.votes);
   }, []);
 
-
-  const handleVote = (increment) => {
+  const handleVote = (event, increment) => {
+    // prevent the cards onClick action from overriding the vote controls
+    event.stopPropagation();
     console.log(`Voted ${increment} for article ID: ${article.article_id}`);
 
     // Logic to prevent votes count going below zero
@@ -25,11 +26,14 @@ export default function Votes({ article }) {
   return (
     <span>
       Votes: {votesCount}
-      <span onClick={() => handleVote(+1)} style={{ cursor: "pointer" }}>
+      <span
+        onClick={(event) => handleVote(event, +1)}
+        style={{ cursor: "pointer" }}
+      >
         <FaArrowAltCircleUp style={{ marginLeft: "10px", color: "gold" }} />
       </span>
       <span
-        onClick={() => handleVote(-1)}
+        onClick={(event) => handleVote(event, -1)}
         style={{ marginLeft: "5px", cursor: "pointer" }}
       >
         <FaArrowAltCircleDown style={{ color: "red" }} />
