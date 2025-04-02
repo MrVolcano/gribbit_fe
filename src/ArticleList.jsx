@@ -48,7 +48,6 @@ export default function ArticleList() {
   return (
     <div>
       <FilterBar />
-      <p>Articles go here</p>
       {articles.map((article) => (
         <ArticleCard key={article.article_id} article={article} />
       ))}

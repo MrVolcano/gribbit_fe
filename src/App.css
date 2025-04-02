@@ -34,8 +34,23 @@
 }
 
 .card {
-  padding: 2em;
   margin-top: 2em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px 8px;
+  cursor: pointer; /* Indicates clickability for upvote */
+}
+
+.controls {
+  display: flex;
+  align-items: center;
 }
 
 .read-the-docs {
@@ -53,9 +68,32 @@
   align-items: center; /* Vertically centers items */
 }
 
+.title-author-container {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+}
+
 .card-body {
   flex: 1 1 auto;
   padding-top: 1em;
   /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
   color: var(--bs-card-color);
+}
+
+.article-container {
+  max-width: 800px; /* Set a max-width matching the image */
+  margin: 0 auto; /* Center the container */
+  padding: 16px; /* Optional padding */
+}
+
+.image {
+  width: 100%;
+  border-radius: 1rem;
+  margin: 1rem 0rem 1rem 0rem;
+}
+
+.text-controls {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack text and controls vertically */
+  align-items: flex-start; /* Align items to the left */
 }

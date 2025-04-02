@@ -17,6 +17,21 @@ export function fetchAllArticles() {
   });
 }
 
+export function fetchArticle(article_id) {
+  console.log("article_id:", article_id);
+  return new Promise((resolve, reject) => {
+    api
+      .get(`/articles/${article_id}`)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+
 export function updateVotes(article_id, increment) {
   console.log("Increment value:", increment);
   return new Promise((resolve, reject) => {
