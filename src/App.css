@@ -33,15 +33,11 @@
   }
 }
 
-/* .card {
-  padding: 2em;
-  margin-top: 2em;
-} */
 .card {
+  margin-top: 2em;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-  margin: 8px;
   position: relative;
   transition: box-shadow 0.2s ease;
 }
