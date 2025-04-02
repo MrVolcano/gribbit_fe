@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchComments } from "./apiFunctions";
 import Spinner from "react-bootstrap/Spinner";
+import CommentCard from "./CommentCard";
 
 export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,9 +54,11 @@ export default function CommentsComponent({ article_id }) {
 
   return (
     <div>
-      <p>Comments here...</p>
-      {comments.map((comments) => (
-        <p key={comments.comment_id}>{comments.body}</p>
+      <h2 style={{ marginTop: "1rem", textAlign: "right" }}>
+        {comments.length} Comments
+      </h2>
+      {comments.map((comment) => (
+        <CommentCard key={comment.id} {...comment} />
       ))}
     </div>
   );

@@ -59,17 +59,14 @@ export default function ArticlePage() {
       <article className="article-container">
         <Header />
         <img src={article.article_img_url} className="image" />
-        <h2>{article.title}</h2>
+        <h1>{article.title}</h1>
         <AuthorAvatar author={article.author} />
-        <section style={{ padding: "1rem 0rem 1rem 0rem" }}>
-          {article.body}
-        </section>
+        <section className="article-body">{article.body}</section>
         <div className="vote-comment-container">
           <Votes article={article} />
-          <CommentsCount />
         </div>
+        <CommentsComponent article_id={article.article_id}></CommentsComponent>
       </article>
-      <CommentsComponent article_id={article.article_id}></CommentsComponent>
     </div>
   );
 }
