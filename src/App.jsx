@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
-import ArticleContainer from "./ArticleContainer";
+import ArticlePage from "./ArticlePage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,9 +10,8 @@ function App() {
     <div className="App">
       {/* <Header /> */}
       <Routes>
-        {/* <Route path="/" element={<ArticleList />} /> */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/articles/:article_id" element={<ArticleContainer />} />
+        <Route path="/articles/:article_id" element={<ArticlePage />} />
       </Routes>
     </div>
   );

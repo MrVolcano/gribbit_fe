@@ -31,6 +31,19 @@ export function fetchArticle(article_id) {
   });
 }
 
+export function fetchComments(article_id) {
+  console.log("Fetching comments for article:", article_id);
+  return new Promise((resolve, reject) => {
+    api
+      .get(`/articles/${article_id}/comments`)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
 
 export function updateVotes(article_id, increment) {
   console.log("Increment value:", increment);

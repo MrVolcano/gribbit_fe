@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --grey: grey;
 }
 
 .logo {
@@ -86,6 +88,12 @@
   padding: 16px; /* Optional padding */
 }
 
+.article-body {
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 1rem 0rem 1rem 0rem;
+}
+
 .image {
   width: 100%;
   border-radius: 1rem;
@@ -96,4 +104,41 @@
   display: flex; /* Use flexbox for alignment */
   flex-direction: column; /* Stack text and controls vertically */
   align-items: flex-start; /* Align items to the left */
+}
+
+.comment-card {
+  margin-top: 1rem;
+  border-radius: 25px;
+  border: 1px solid #73ad21;
+  padding: 20px;
+}
+.comment-author-container {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+}
+
+.comment-author {
+  font-weight: bold;
+}
+.comment-date {
+  color: var(--grey);
+}
+
+.comment-body-container {
+  margin-top: 1rem;
+  text-align: justify;
+  text-justify: inter-word;
+  border-radius: 1rem;
+  line-height: normal;
+}
+
+.comment-votes-date-container {
+  display: flex;
+  justify-content: space-between; /* Aligns items to the left and right */
+  margin-top: 10px; /* Adds some space above the container */
+}
+
+.comment-votes-date-container span {
+  display: flex;
+  align-items: center; /* Vertically centers items */
 }
