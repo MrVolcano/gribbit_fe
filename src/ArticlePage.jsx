@@ -1,6 +1,4 @@
-import Image from "react-bootstrap/Image";
 import Spinner from "react-bootstrap/Spinner";
-import Card from "react-bootstrap/Card";
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import { fetchArticle } from "./apiFunctions";
@@ -8,10 +6,11 @@ import { useParams } from "react-router-dom";
 import AuthorAvatar from "./AuthorAvatar";
 import Votes from "./Votes";
 import CommentsCount from "./CommentsCount";
+import CommentsComponent from "./CommentsComponent";
 
-export default function ArticleContainer() {
+export default function ArticlePage() {
   const { article_id } = useParams();
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [article, setArticle] = useState({});
 
@@ -56,19 +55,21 @@ export default function ArticleContainer() {
   }
 
   return (
-    <article className="article-container">
-      <Header />
-      {/* <Image src={article.article_img_url} rounded fluid /> */}
-      <img src={article.article_img_url} className="image" />
-      <h2>{article.title}</h2>
-
-      <section style={{ padding: "1rem 0rem 1rem 0rem" }}>
-        {article.body}
-      </section>
-      <div className="vote-comment-container">
-        <Votes article={article} />
+    <div>
+      <article className="article-container">
+        <Header />
+        <img src={article.article_img_url} className="image" />
+        <h2>{article.title}</h2>
         <AuthorAvatar author={article.author} />
-      </div>
-    </article>
+        <section style={{ padding: "1rem 0rem 1rem 0rem" }}>
+          {article.body}
+        </section>
+        <div className="vote-comment-container">
+          <Votes article={article} />
+          <CommentsCount />
+        </div>
+      </article>
+      <CommentsComponent article_id={article.article_id}></CommentsComponent>
+    </div>
   );
 }
