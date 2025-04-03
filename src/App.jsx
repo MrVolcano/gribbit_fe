@@ -1,14 +1,16 @@
 import "./App.css";
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import ArticlePage from "./ArticlePage";
+import ToastPopup from "./Toast"; 
+import { useError } from "./Contexts/Error";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { error } = useError(); 
+
   return (
     <div className="App">
-      {/* <Header /> */}
+      <ToastPopup />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/articles/:article_id" element={<ArticlePage />} />

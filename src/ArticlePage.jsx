@@ -5,21 +5,19 @@ import { fetchArticle } from "./apiFunctions";
 import { useParams } from "react-router-dom";
 import AuthorAvatar from "./AuthorAvatar";
 import Votes from "./Votes";
-import CommentsCount from "./CommentsCount";
 import CommentsComponent from "./CommentsComponent";
+import { useError } from "./Contexts/Error"; 
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [article, setArticle] = useState({});
+  const { showError } = useError(); 
 
   console.log("Passed Article_id:", article_id);
 
-  // retrieve full article
   useEffect(() => {
     console.log("running useEffect block");
-    setError(false);
     setIsLoading(true);
     fetchArticle(article_id)
       .then((articleData) => {
@@ -28,12 +26,12 @@ export default function ArticlePage() {
       })
       .catch((error) => {
         console.error(`Error fetching article: ${article_id}`, error);
-        setError(true);
+        showError(`Failed to load article: ${error.message}`); 
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [article_id]); 
 
   if (isLoading) {
     return (
@@ -45,27 +43,18 @@ export default function ArticlePage() {
     );
   }
 
-  if (error) {
-    return (
-      <>
-        <br />
-        <p>Ooops! Something's croaked!</p>
-      </>
-    );
-  }
-
   return (
     <div>
       <article className="article-container">
         <Header />
-        <img src={article.article_img_url} className="image" />
+        <img src={article.article_img_url} className="image" alt="" />
         <h1>{article.title}</h1>
         <AuthorAvatar author={article.author} />
         <section className="article-body">{article.body}</section>
         <div className="vote-comment-container">
           <Votes article={article} />
         </div>
-        <CommentsComponent article_id={article.article_id}></CommentsComponent>
+        <CommentsComponent article_id={article.article_id} />
       </article>
     </div>
   );

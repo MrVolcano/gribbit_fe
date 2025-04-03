@@ -1,26 +1,32 @@
 import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
 import { updateVotes } from "./apiFunctions";
 import { useEffect, useState } from "react";
+import { useError } from "./Contexts/Error";
 
 export default function Votes({ article }) {
   const [votesCount, setVotesCount] = useState(0);
+  const { showError } = useError();
+
   useEffect(() => {
     setVotesCount(article.votes);
-  }, []);
+  }, [article.votes]); 
 
   const handleVote = (event, increment) => {
-    // prevent the cards onClick action from overriding the vote controls
     event.stopPropagation();
     console.log(`Voted ${increment} for article ID: ${article.article_id}`);
 
-    // Logic to prevent votes count going below zero
     const newVotesCount = votesCount + increment;
     if (newVotesCount < 0) {
       console.log("Vote count cannot go below zero.");
       return;
     }
     setVotesCount(newVotesCount);
-    updateVotes(article.article_id, increment);
+
+    updateVotes(article.article_id, increment).catch((error) => {
+      console.error("Problem updating vote:", error);
+      setVotesCount((currentVotesCount) => currentVotesCount - increment); 
+      showError("There was a problem updating the vote. Please try again.");
+    });
   };
 
   return (
