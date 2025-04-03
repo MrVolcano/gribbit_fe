@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchComments } from "../utils/apiFunctions";
 import CommentCard from "./CommentCard";
 import CustomSpinner from "./CustomSpinner";
+import CommentForm from "./CommentForm";
 
 export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState({});
+  const [refreshComments, setRefreshComments] = useState(false);
 
   console.log("Passed Article_id:", article_id);
 
@@ -30,7 +32,7 @@ export default function CommentsComponent({ article_id }) {
         setIsLoading(false);
         console.log("comments is set to: ", comments);
       });
-  }, []);
+  }, [refreshComments]);
 
   if (isLoading) {
     return <CustomSpinner message={"Loading Comments..."} />;
@@ -50,6 +52,7 @@ export default function CommentsComponent({ article_id }) {
       <h2 style={{ marginTop: "1rem", textAlign: "right" }}>
         {comments.length} Comments
       </h2>
+      <CommentForm article_id={article_id} />
       {comments.map((comment) => (
         <CommentCard key={comment.comment_id} {...comment} />
       ))}
