@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { fetchComments } from "./apiFunctions";
+import { fetchComments } from "../utils/apiFunctions";
 import Spinner from "react-bootstrap/Spinner";
 import CommentCard from "./CommentCard";
 

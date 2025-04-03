@@ -1,9 +1,9 @@
-import { fetchAllArticles } from "./apiFunctions";
+import { fetchAllArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
 import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { useError } from "./Contexts/Error";
+import { useError } from "../Contexts/Error";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);

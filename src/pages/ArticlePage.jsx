@@ -1,18 +1,18 @@
 import Spinner from "react-bootstrap/Spinner";
-import Header from "./Header";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import { fetchArticle } from "./apiFunctions";
+import { fetchArticle } from "../utils/apiFunctions";
 import { useParams } from "react-router-dom";
-import AuthorAvatar from "./AuthorAvatar";
-import Votes from "./Votes";
-import CommentsComponent from "./CommentsComponent";
-import { useError } from "./Contexts/Error"; 
+import AuthorAvatar from "../components/AuthorAvatar";
+import Votes from "../components/Votes";
+import CommentsComponent from "../components/CommentsComponent";
+import { useError } from "../Contexts/Error";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
-  const { showError } = useError(); 
+  const { showError } = useError();
 
   console.log("Passed Article_id:", article_id);
 
@@ -26,12 +26,12 @@ export default function ArticlePage() {
       })
       .catch((error) => {
         console.error(`Error fetching article: ${article_id}`, error);
-        showError(`Failed to load article: ${error.message}`); 
+        showError(`Failed to load article: ${error.message}`);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [article_id]); 
+  }, [article_id]);
 
   if (isLoading) {
     return (

@@ -1,5 +1,5 @@
-import ArticleList from "./ArticleList";
-import Header from "./Header";
+import ArticleList from "../components/ArticleList";
+import Header from "../components/Header";
 
 export default function HomePage() {
   return (

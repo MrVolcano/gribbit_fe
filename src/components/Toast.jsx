@@ -1,6 +1,6 @@
 import ToastContainer from "react-bootstrap/ToastContainer";
 import Toast from "react-bootstrap/Toast";
-import { useError } from "./Contexts/Error";
+import { useError } from "../Contexts/Error";
 
 const ToastPopup = () => {
   const { error, clearError } = useError();
