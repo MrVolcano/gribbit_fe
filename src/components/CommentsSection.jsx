@@ -57,7 +57,7 @@ export default function CommentsComponent({ article_id }) {
         {comments.length} Comments
       </h2>
       {comments.map((comment) => (
-        <CommentCard key={comment.id} {...comment} />
+        <CommentCard key={comment.comment_id} {...comment} />
       ))}
     </div>
   );

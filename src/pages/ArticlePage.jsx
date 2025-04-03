@@ -5,7 +5,7 @@ import { fetchArticle } from "../utils/apiFunctions";
 import { useParams } from "react-router-dom";
 import AuthorAvatar from "../components/AuthorAvatar";
 import Votes from "../components/Votes";
-import CommentsComponent from "../components/CommentsComponent";
+import CommentsComponent from "../components/CommentsSection";
 import { useError } from "../Contexts/Error";
 
 export default function ArticlePage() {
