@@ -3,23 +3,23 @@ import ArticleCard from "./ArticleCard";
 import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { useError } from "./Contexts/Error";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState([true]);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { showError } = useError();
 
   useEffect(() => {
-    setError(false);
     setIsLoading(true);
     fetchAllArticles()
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);
       })
-      .catch((error) => {
-        console.error("Error fetching articles:", error);
-        setError(true);
+      .catch((err) => {
+        console.error("Error fetching articles:", err);
+        showError(err.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -32,15 +32,6 @@ export default function ArticleList() {
         <br />
         <p>Loading</p>
         <Spinner />
-      </>
-    );
-  }
-
-  if (error) {
-    return (
-      <>
-        <br />
-        <p>Ooops! Something's croaked!</p>
       </>
     );
   }
