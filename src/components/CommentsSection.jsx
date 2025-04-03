@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchComments } from "../utils/apiFunctions";
-import Spinner from "react-bootstrap/Spinner";
 import CommentCard from "./CommentCard";
+import CustomSpinner from "./CustomSpinner";
 
 export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,13 +33,7 @@ export default function CommentsComponent({ article_id }) {
   }, []);
 
   if (isLoading) {
-    return (
-      <>
-        <br />
-        <p>Loading comments</p>
-        <Spinner />
-      </>
-    );
+    return <CustomSpinner message={"Loading Comments..."} />;
   }
 
   if (error) {

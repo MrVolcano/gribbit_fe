@@ -2,8 +2,8 @@ import { fetchAllArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
 import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
-import Spinner from "react-bootstrap/Spinner";
 import { useError } from "../Contexts/Error";
+import CustomSpinner from "./CustomSpinner";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -28,11 +28,7 @@ export default function ArticleList() {
 
   if (isLoading) {
     return (
-      <>
-        <br />
-        <p>Loading</p>
-        <Spinner />
-      </>
+      <CustomSpinner message={"Loading Articles..."} />
     );
   }
 

@@ -1,4 +1,3 @@
-import Spinner from "react-bootstrap/Spinner";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { fetchArticle } from "../utils/apiFunctions";
@@ -7,6 +6,7 @@ import AuthorAvatar from "../components/AuthorAvatar";
 import Votes from "../components/Votes";
 import CommentsComponent from "../components/CommentsSection";
 import { useError } from "../Contexts/Error";
+import CustomSpinner from "../components/CustomSpinner";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
@@ -34,13 +34,7 @@ export default function ArticlePage() {
   }, [article_id]);
 
   if (isLoading) {
-    return (
-      <>
-        <br />
-        <p>Loading</p>
-        <Spinner />
-      </>
-    );
+    return <CustomSpinner message={"Loading Article..."} />;
   }
 
   return (
