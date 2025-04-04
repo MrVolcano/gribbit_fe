@@ -8,7 +8,6 @@ export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState({});
-  // const [refreshComments, setRefreshComments] = useState(false);
 
   console.log("Passed Article_id:", article_id);
 

@@ -8,13 +8,16 @@ export default function CommentForm({ article_id, onCommentAdded }) {
   const username = "tickle122";
   const [comment, setComment] = useState("");
   const { showError } = useError();
+  const [validationError, setValidationError] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
+    setValidationError("");
     const body = { username, body: comment };
     console.log("running handleSubmit", article_id, body);
     if (!comment.trim()) {
-      showError("Comment cannot be empty");
+      setValidationError("Comment cannot be empty");
+      // showError("Comment cannot be empty");
       return;
     }
 
@@ -32,20 +35,31 @@ export default function CommentForm({ article_id, onCommentAdded }) {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="mb-3 d-flex align-items-center">
-        <input
-          type="text"
-          className="form-control me-2"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Add a comment..."
-          style={{ flex: "1" }}
-        ></input>
-        <Button type="submit" variant="primary">
-          Post
-        </Button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className="mb-3 d-flex align-items-start">
+      <div className="flex-grow-1 me-3">
+        <div className="position-relative">
+          <input
+            type="text"
+            className={`form-control ${validationError ? "is-invalid" : ""}`}
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+              setValidationError("");
+            }}
+            placeholder="Add a comment..."
+          />
+          {validationError && (
+            <div className="invalid-feedback d-block">{validationError}</div>
+          )}
+        </div>
+      </div>
+      <Button
+        type="submit"
+        variant="primary"
+        style={{ alignSelf: "flex-start" }}
+      >
+        Post
+      </Button>
+    </form>
   );
 }
