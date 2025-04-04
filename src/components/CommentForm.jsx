@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postComment } from "../utils/apiFunctions";
 import { useError } from "../Contexts/Error";
+import { Button } from "react-bootstrap";
 
 export default function CommentForm({ article_id, onCommentAdded }) {
   console.log("CommentForm called with ", article_id);
@@ -32,17 +33,18 @@ export default function CommentForm({ article_id, onCommentAdded }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mb-3 d-flex align-items-center">
         <input
           type="text"
-          className="form-control mb-2"
+          className="form-control me-2"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Add a comment..."
+          style={{ flex: "1" }}
         ></input>
-        <button type="submit" variant="primary">
+        <Button type="submit" variant="primary">
           Post
-        </button>
+        </Button>
       </form>
     </>
   );
