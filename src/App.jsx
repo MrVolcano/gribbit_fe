@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ArticlePage from "./pages/ArticlePage";
 import ToastPopup from "./components/Toast";
-import { useError } from "./Contexts/Error";
+import { useError } from "./Contexts/ErrorContext";
 
 function App() {
   const { error } = useError();
