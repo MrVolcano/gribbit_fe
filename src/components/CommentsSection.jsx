@@ -39,8 +39,20 @@ export default function CommentsComponent({ article_id }) {
   }, [article_id]);
 
   function handleCommentAdded(newComment) {
-    setComments((prevComments) => [newComment, ...prevComments]);
+    setComments((prevComments) => [
+      { ...newComment, isNew: true },
+      ...prevComments,
+    ]);
     console.log("New comments array:", comments);
+    setTimeout(() => {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.comment_id === newComment.comment_id
+            ? { ...comment, isNew: false }
+            : comment
+        )
+      );
+    }, 2000);
   }
 
   if (isLoading) {

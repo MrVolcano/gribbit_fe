@@ -2,8 +2,9 @@ import { RxAvatar } from "react-icons/rx";
 import timeAgo from "../utils/timeAgo";
 
 export default function CommentCard(comment) {
+  const isNew = comment.isNew || false;
   return (
-    <div className="comment-card">
+    <div className={`comment-card ${isNew ? "pulse" : ""}`}>
       <div className="comment-author-container">
         <span className="comment-author">
           <RxAvatar style={{ color: "grey", marginRight: "0.3rem" }} />
