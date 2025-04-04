@@ -1,7 +1,7 @@
 import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
-import { updateVotes } from "./apiFunctions";
+import { updateVotes } from "../utils/apiFunctions";
 import { useEffect, useState } from "react";
-import { useError } from "./Contexts/Error";
+import { useError } from "../Contexts/Error";
 
 export default function Votes({ article }) {
   const [votesCount, setVotesCount] = useState(0);
@@ -9,7 +9,7 @@ export default function Votes({ article }) {
 
   useEffect(() => {
     setVotesCount(article.votes);
-  }, [article.votes]); 
+  }, [article.votes]);
 
   const handleVote = (event, increment) => {
     event.stopPropagation();
@@ -24,7 +24,7 @@ export default function Votes({ article }) {
 
     updateVotes(article.article_id, increment).catch((error) => {
       console.error("Problem updating vote:", error);
-      setVotesCount((currentVotesCount) => currentVotesCount - increment); 
+      setVotesCount((currentVotesCount) => currentVotesCount - increment);
       showError("There was a problem updating the vote. Please try again.");
     });
   };

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { fetchComments } from "./apiFunctions";
-import Spinner from "react-bootstrap/Spinner";
+import { fetchComments } from "../utils/apiFunctions";
 import CommentCard from "./CommentCard";
+import CustomSpinner from "./CustomSpinner";
+import CommentForm from "./CommentForm";
 
 export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +11,7 @@ export default function CommentsComponent({ article_id }) {
 
   console.log("Passed Article_id:", article_id);
 
-  useEffect(() => {
+  function fetchCommentsData() {
     console.log("Running useEffect block");
     setError(false);
     setIsLoading(true);
@@ -31,16 +31,31 @@ export default function CommentsComponent({ article_id }) {
         setIsLoading(false);
         console.log("comments is set to: ", comments);
       });
-  }, []);
+  }
+
+  useEffect(() => {
+    fetchCommentsData();
+  }, [article_id]);
+
+  function handleCommentAdded(newComment) {
+    setComments((prevComments) => [
+      { ...newComment, isNew: true },
+      ...prevComments,
+    ]);
+    console.log("New comments array:", comments);
+    setTimeout(() => {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.comment_id === newComment.comment_id
+            ? { ...comment, isNew: false }
+            : comment
+        )
+      );
+    }, 2000);
+  }
 
   if (isLoading) {
-    return (
-      <>
-        <br />
-        <p>Loading comments</p>
-        <Spinner />
-      </>
-    );
+    return <CustomSpinner message={"Loading Comments..."} />;
   }
 
   if (error) {
@@ -57,8 +72,12 @@ export default function CommentsComponent({ article_id }) {
       <h2 style={{ marginTop: "1rem", textAlign: "right" }}>
         {comments.length} Comments
       </h2>
+      <CommentForm
+        article_id={article_id}
+        onCommentAdded={handleCommentAdded}
+      />
       {comments.map((comment) => (
-        <CommentCard key={comment.id} {...comment} />
+        <CommentCard key={comment.comment_id} {...comment} />
       ))}
     </div>
   );

@@ -1,12 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import ArticlePage from "./ArticlePage";
-import ToastPopup from "./Toast"; 
+import HomePage from "./pages/HomePage";
+import ArticlePage from "./pages/ArticlePage";
+import ToastPopup from "./components/Toast";
 import { useError } from "./Contexts/Error";
 
 function App() {
-  const { error } = useError(); 
+  const { error } = useError();
 
   return (
     <div className="App">

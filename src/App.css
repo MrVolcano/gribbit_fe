@@ -111,7 +111,34 @@
   border-radius: 25px;
   border: 1px solid #73ad21;
   padding: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  /* border: 1px solid #ddd; */
+  transition: all 0.3s ease; /* Smooth transition when pulse ends */
 }
+
+.pulse {
+  animation: pulse 1s ease-in-out; /* Pulse twice over 2s */
+  /* background-color: #cee6ad; */
+  border: 1px solid #73ad21;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(206, 230, 173, 0); /* No glow */
+  }
+  50% {
+    transform: scale(1.05); /* Slight grow */
+    box-shadow: 0 0 10px 5px rgba(206, 230, 173, 0.7); /* Glow peak */
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(206, 230, 173, 0); /* Glow fades */
+
+  }
+}
+
 .comment-author-container {
   display: flex;
   justify-content: space-between; /* Aligns items to the left and right */
@@ -141,4 +168,13 @@
 .comment-votes-date-container span {
   display: flex;
   align-items: center; /* Vertically centers items */
+}
+
+.is-invalid {
+  border-color: #dc3545;
+  border-width: 2px;
+}
+
+.invalid-feedback {
+  margin-top: 0.25rem;
 }
