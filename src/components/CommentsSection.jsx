@@ -8,11 +8,11 @@ export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState({});
-  const [refreshComments, setRefreshComments] = useState(false);
+  // const [refreshComments, setRefreshComments] = useState(false);
 
   console.log("Passed Article_id:", article_id);
 
-  useEffect(() => {
+  function fetchCommentsData() {
     console.log("Running useEffect block");
     setError(false);
     setIsLoading(true);
@@ -32,7 +32,16 @@ export default function CommentsComponent({ article_id }) {
         setIsLoading(false);
         console.log("comments is set to: ", comments);
       });
-  }, [refreshComments]);
+  }
+
+  useEffect(() => {
+    fetchCommentsData();
+  }, [article_id]);
+
+  function handleCommentAdded(newComment) {
+    setComments((prevComments) => [newComment, ...prevComments]);
+    console.log("New comments array:", comments);
+  }
 
   if (isLoading) {
     return <CustomSpinner message={"Loading Comments..."} />;
@@ -52,7 +61,10 @@ export default function CommentsComponent({ article_id }) {
       <h2 style={{ marginTop: "1rem", textAlign: "right" }}>
         {comments.length} Comments
       </h2>
-      <CommentForm article_id={article_id} />
+      <CommentForm
+        article_id={article_id}
+        onCommentAdded={handleCommentAdded}
+      />
       {comments.map((comment) => (
         <CommentCard key={comment.comment_id} {...comment} />
       ))}
