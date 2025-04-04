@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { fetchComments } from "../utils/apiFunctions";
+import { deleteComment, fetchComments } from "../utils/apiFunctions";
 import CommentCard from "./CommentCard";
 import CustomSpinner from "./CustomSpinner";
 import CommentForm from "./CommentForm";
+import { useError } from "../Contexts/ErrorContext";
 
 export default function CommentsComponent({ article_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [comments, setComments] = useState({});
+  const { showError } = useError();
 
   console.log("Passed Article_id:", article_id);
 
@@ -37,7 +39,7 @@ export default function CommentsComponent({ article_id }) {
     fetchCommentsData();
   }, [article_id]);
 
-  function handleCommentAdded(newComment) {
+  function handleAddComment(newComment) {
     setComments((prevComments) => [
       { ...newComment, isNew: true },
       ...prevComments,
@@ -52,6 +54,18 @@ export default function CommentsComponent({ article_id }) {
         )
       );
     }, 2000);
+  }
+
+  function handleDeleteComment(comment_id) {
+    deleteComment(comment_id)
+      .then((response) => {
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.comment_id !== comment_id)
+        );
+      })
+      .catch((error) => {
+        showError("Failed to delete Comment");
+      });
   }
 
   if (isLoading) {
@@ -72,12 +86,13 @@ export default function CommentsComponent({ article_id }) {
       <h2 style={{ marginTop: "1rem", textAlign: "right" }}>
         {comments.length} Comments
       </h2>
-      <CommentForm
-        article_id={article_id}
-        onCommentAdded={handleCommentAdded}
-      />
+      <CommentForm article_id={article_id} onCommentAdded={handleAddComment} />
       {comments.map((comment) => (
-        <CommentCard key={comment.comment_id} {...comment} />
+        <CommentCard
+          key={comment.comment_id}
+          {...comment}
+          onDelete={handleDeleteComment}
+        />
       ))}
     </div>
   );
