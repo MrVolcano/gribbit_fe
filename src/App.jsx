@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <ToastPopup />
       <Routes>
+        <Route path="/topic/:topic" element={<HomePage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/articles/:article_id" element={<ArticlePage />} />
       </Routes>

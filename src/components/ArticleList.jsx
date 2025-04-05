@@ -4,15 +4,19 @@ import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
 import { useError } from "../Contexts/ErrorContext";
 import CustomSpinner from "./CustomSpinner";
+import { useParams } from "react-router-dom";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showError } = useError();
+  const { topic } = useParams();
+
+  console.log("Passed Topic:", topic);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles()
+    fetchArticles(topic)
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);
