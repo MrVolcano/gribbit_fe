@@ -93,3 +93,19 @@ export function deleteComment(commentId) {
       });
   });
 }
+
+// GET /api/topics"
+export function fetchTopics() {
+  return new Promise((resolve, reject) => {
+    api
+      .get("/topics")
+      .then((response) => {
+        console.log("Fetching comments");
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching topics:", error);
+        reject(error);
+      });
+  });
+}
