@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import AuthorAvatar from "../components/AuthorAvatar";
 import Votes from "../components/Votes";
 import CommentsComponent from "../components/CommentsSection";
-import { useError } from "../Contexts/Error";
+import { useError } from "../Contexts/ErrorContext";
 import CustomSpinner from "../components/CustomSpinner";
 
 export default function ArticlePage() {

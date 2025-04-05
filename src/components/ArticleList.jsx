@@ -2,7 +2,7 @@ import { fetchAllArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
 import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
-import { useError } from "../Contexts/Error";
+import { useError } from "../Contexts/ErrorContext";
 import CustomSpinner from "./CustomSpinner";
 
 export default function ArticleList() {
@@ -27,9 +27,7 @@ export default function ArticleList() {
   }, []);
 
   if (isLoading) {
-    return (
-      <CustomSpinner message={"Loading Articles..."} />
-    );
+    return <CustomSpinner message={"Loading Articles..."} />;
   }
 
   return (

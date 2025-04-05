@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { postComment } from "../utils/apiFunctions";
-import { useError } from "../Contexts/Error";
+import { useError } from "../Contexts/ErrorContext";
+import { useUser } from "../Contexts/UserContexts";
 import { Button } from "react-bootstrap";
 
 export default function CommentForm({ article_id, onCommentAdded }) {
   console.log("CommentForm called with ", article_id);
-  const username = "tickle122";
+  const { username } = useUser();
   const [comment, setComment] = useState("");
   const { showError } = useError();
   const [validationError, setValidationError] = useState("");

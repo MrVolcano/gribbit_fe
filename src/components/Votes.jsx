@@ -1,7 +1,7 @@
 import { FaArrowAltCircleUp, FaArrowAltCircleDown } from "react-icons/fa";
 import { updateVotes } from "../utils/apiFunctions";
 import { useEffect, useState } from "react";
-import { useError } from "../Contexts/Error";
+import { useError } from "../Contexts/ErrorContext";
 
 export default function Votes({ article }) {
   const [votesCount, setVotesCount] = useState(0);

@@ -76,13 +76,17 @@ export function postComment(article_id, newComment) {
   });
 }
 
-// POST /api/articles/:article_id/comments": {
-//   "description": "creates a comment for the given article_id",
-//   "queries": [],
-//   "exampleResponse": {
-//   "comment_id": 313,
-//   "article_id": 1,
-//   "body": "my first comment",
-//   "votes": 0,
-//   "author": "grumpy19",
-//   "created_at": "2025-03-12T15:03:39.553Z"
+export function deleteComment(commentId) {
+  return new Promise((resolve, reject) => {
+    api
+      .delete(`/comments/${commentId}`)
+      .then((response) => {
+        console.log(`comment ${commentId} deleted`);
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting comment:", error);
+        reject(error);
+      });
+  });
+}
