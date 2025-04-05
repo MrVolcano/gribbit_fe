@@ -1,4 +1,4 @@
-import { fetchAllArticles } from "../utils/apiFunctions";
+import { fetchArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
 import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
@@ -12,7 +12,7 @@ export default function ArticleList() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchAllArticles()
+    fetchArticles()
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);

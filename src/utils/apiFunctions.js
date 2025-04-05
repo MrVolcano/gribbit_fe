@@ -4,10 +4,13 @@ const api = axios.create({
   baseURL: "https://news-q339.onrender.com/api",
 });
 
-export function fetchAllArticles() {
+export function fetchArticles(topic) {
+  // let topics = "football";
+  let searchParams = "";
+  if (topic) searchParams = `?topic=${topic}`;
   return new Promise((resolve, reject) => {
     api
-      .get("/articles")
+      .get(`/articles${searchParams}`)
       .then((response) => {
         resolve(response.data);
       })
