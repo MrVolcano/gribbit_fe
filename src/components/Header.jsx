@@ -2,6 +2,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Container } from "react-bootstrap";
 import { appName } from "../constants";
+import TopicSelector from "./TopicSelector";
 
 export default function Header() {
   return (
@@ -18,6 +19,7 @@ export default function Header() {
             />{" "}
             {appName}
           </Navbar.Brand>
+          <TopicSelector></TopicSelector>
         </Container>
       </Navbar>
     </div>
