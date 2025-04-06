@@ -1,6 +1,5 @@
 import { fetchArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
-import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
 import { useError } from "../Contexts/ErrorContext";
 import CustomSpinner from "./CustomSpinner";
@@ -28,7 +27,7 @@ export default function ArticleList() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [topic]);
 
   if (isLoading) {
     return <CustomSpinner message={"Loading Articles..."} />;
@@ -36,7 +35,6 @@ export default function ArticleList() {
 
   return (
     <div>
-      <FilterBar />
       {articles.map((article) => (
         <ArticleCard key={article.article_id} article={article} />
       ))}

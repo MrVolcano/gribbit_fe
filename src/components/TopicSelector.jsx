@@ -3,6 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { fetchTopics } from "../utils/apiFunctions";
 import { useError } from "../Contexts/ErrorContext";
+import { Link } from "react-router-dom";
 
 export default function TopicSelector() {
   console.log("TopicSelector running");
@@ -30,7 +31,9 @@ export default function TopicSelector() {
     <DropdownButton title="Filter Topic">
       {isLoading && <Dropdown.Item>Loading...</Dropdown.Item>}
       {topics.map((topic) => (
-        <Dropdown.Item key={topic.slug}>{topic.slug}</Dropdown.Item>
+        <Dropdown.Item key={topic.slug} as={Link} to={`/topics/${topic.slug}`}>
+          {topic.slug.slice(0, 1).toUpperCase() + topic.slug.slice(1)}
+        </Dropdown.Item>
       ))}
     </DropdownButton>
   );
