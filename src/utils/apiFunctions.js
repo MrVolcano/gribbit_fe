@@ -4,10 +4,13 @@ const api = axios.create({
   baseURL: "https://news-q339.onrender.com/api",
 });
 
-export function fetchAllArticles() {
+export function fetchArticles(topic) {
+  // let topics = "football";
+  let searchParams = "";
+  if (topic) searchParams = `?topic=${topic}`;
   return new Promise((resolve, reject) => {
     api
-      .get("/articles")
+      .get(`/articles${searchParams}`)
       .then((response) => {
         resolve(response.data);
       })
@@ -86,6 +89,22 @@ export function deleteComment(commentId) {
       })
       .catch((error) => {
         console.error("Error deleting comment:", error);
+        reject(error);
+      });
+  });
+}
+
+// GET /api/topics"
+export function fetchTopics() {
+  return new Promise((resolve, reject) => {
+    api
+      .get("/topics")
+      .then((response) => {
+        console.log("Fetching comments");
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching topics:", error);
         reject(error);
       });
   });

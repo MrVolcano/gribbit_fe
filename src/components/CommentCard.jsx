@@ -1,7 +1,6 @@
 import { RxAvatar } from "react-icons/rx";
 import timeAgo from "../utils/timeAgo";
 import { useUser } from "../Contexts/UserContexts";
-// import { Button } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 export default function CommentCard({

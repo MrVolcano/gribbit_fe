@@ -1,18 +1,21 @@
-import { fetchAllArticles } from "../utils/apiFunctions";
+import { fetchArticles } from "../utils/apiFunctions";
 import ArticleCard from "./ArticleCard";
-import FilterBar from "./FilterBar";
 import { useState, useEffect } from "react";
 import { useError } from "../Contexts/ErrorContext";
 import CustomSpinner from "./CustomSpinner";
+import { useParams } from "react-router-dom";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showError } = useError();
+  const { topic } = useParams();
+
+  console.log("Passed Topic:", topic);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchAllArticles()
+    fetchArticles(topic)
       .then((articlesFromApi) => {
         setArticles(articlesFromApi.articles);
         console.log(articlesFromApi);
@@ -24,7 +27,7 @@ export default function ArticleList() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [topic]);
 
   if (isLoading) {
     return <CustomSpinner message={"Loading Articles..."} />;
@@ -32,7 +35,6 @@ export default function ArticleList() {
 
   return (
     <div>
-      <FilterBar />
       {articles.map((article) => (
         <ArticleCard key={article.article_id} article={article} />
       ))}
