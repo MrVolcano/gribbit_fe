@@ -35,6 +35,11 @@ export default function TopicSelector() {
           {topic.slug.slice(0, 1).toUpperCase() + topic.slug.slice(1)}
         </Dropdown.Item>
       ))}
+      {!isLoading && (
+        <Dropdown.Item as={Link} to={`/`}>
+          All
+        </Dropdown.Item>
+      )}
     </DropdownButton>
   );
 }
