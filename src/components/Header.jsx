@@ -12,7 +12,7 @@ export default function Header() {
           <Navbar.Brand href="/">
             <img
               alt=""
-              src="/src/assets/frog2.svg"
+              src="./src/assets/frog2.svg"
               width="30"
               height="30"
               className="d-inline-block align-top"
