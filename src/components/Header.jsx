@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Container } from "react-bootstrap";
 import { appName } from "../constants";
 import TopicSelector from "./TopicSelector";
-import frogLogo from "./src/assets/frog2.svg";
+import frogLogo from "../assets/frog2.svg";
 
 export default function Header() {
   return (
