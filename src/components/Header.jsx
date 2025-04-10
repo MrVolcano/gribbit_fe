@@ -1,8 +1,8 @@
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import { Container } from "react-bootstrap";
 import { appName } from "../constants";
 import TopicSelector from "./TopicSelector";
+import frogLogo from "./src/assets/frog2.svg";
 
 export default function Header() {
   return (
@@ -11,8 +11,8 @@ export default function Header() {
         <Container>
           <Navbar.Brand href="/">
             <img
-              alt=""
-              src="./src/assets/frog2.svg"
+              alt="logo"
+              src={frogLogo}
               width="30"
               height="30"
               className="d-inline-block align-top"
