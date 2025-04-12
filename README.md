@@ -9,7 +9,7 @@ Gribbit is a frog-themed play on Reddit (Geddit?) aggregation delivering concise
 
 The deployed version of Gribbit is available at [https://gribbit.netlify.app/](https://gribbit.netlify.app/).
 
-The backend counterpart for this project can be found at [https://github.com/MrVolcano/news](https://github.com/MrVolcano/news).
+The backend counterpart for this project can be found at [https://github.com/MrVolcano/news](https://github.com/MrVolcano/gribbit_be).
 
 ## How to Use Gribbit
 
